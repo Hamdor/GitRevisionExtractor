@@ -45,7 +45,7 @@ namespace GitRevExtractor
                 string[] revInput = File.ReadAllLines("git_revision.h");
                 if (revInput == null ||
                     revInput.Length != 10 ||
-                    revInput[3] != String.Format("#define BUILD_REVISION {0}", verHash) ||
+                    revInput[3] != String.Format("#define BUILD_REVISION \"{0}\"", verHash) ||
                     revInput[4] != String.Format("#define BUILD_HOST \"{0}\"", host) ||
                     revInput[5] != String.Format("#define BUILD_USER \"{0}\"", user))
                     File.Delete("git_revision.h");
@@ -69,7 +69,7 @@ namespace GitRevExtractor
                             {
                                 wStream.WriteLine("#ifndef GIT_REVISION_H");
                                 wStream.WriteLine("#define GIT_REVISION_H\n");
-                                wStream.WriteLine("#define BUILD_REVISION {0}", verHash);
+                                wStream.WriteLine("#define BUILD_REVISION \"{0}\"", verHash);
                                 wStream.WriteLine("#define BUILD_HOST \"{0}\"", host);
                                 wStream.WriteLine("#define BUILD_USER \"{0}\"", user);
                                 wStream.WriteLine("#define BUILD_TIME __TIME__");
